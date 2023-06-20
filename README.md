@@ -1,1 +1,1 @@
-# tree-sitter
+# tree-sitter-crystal
