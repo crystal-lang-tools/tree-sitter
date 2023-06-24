@@ -1,0 +1,35 @@
+======================
+Quoted string literals
+======================
+
+"hello world"
+
+---
+
+(source_file
+	(string (quoted_string)))
+
+=======================
+Percent string literals
+=======================
+
+%(parenthesised strings)
+
+%[bracket strings]
+
+%{braced strings}
+
+%<whatever these are called string>
+
+%|and pipe strings|
+
+---
+
+(source_file
+	(chained_string
+		(string (percent_string))
+		(string (percent_string))
+		(string (percent_string))
+		(string (percent_string))
+		(string (percent_string))))
+
