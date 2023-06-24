@@ -10,7 +10,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_statement"
+              "name": "_statements"
             },
             {
               "type": "BLANK"
@@ -60,8 +60,8 @@
                     "type": "PREC",
                     "value": -1,
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_terminator"
+                      "type": "STRING",
+                      "value": ";"
                     }
                   }
                 ]
@@ -84,10 +84,6 @@
         {
           "type": "SYMBOL",
           "name": "_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_terminator"
         }
       ]
     },
@@ -285,7 +281,7 @@
                   "type": "REPEAT",
                   "content": {
                     "type": "PATTERN",
-                    "value": "[0-7]"
+                    "value": "[0-7_]"
                   }
                 }
               ]

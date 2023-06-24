@@ -10,20 +10,17 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    source_file: $ => seq(optional($._statement)),
+    source_file: $ => seq(optional($._statements)),
 
     _terminator: $ => choice(/\r?\n/, ';'),
 
     _statements: $ =>
       choice(
         seq(
-          repeat1(
-            choice(seq($._statement, $._terminator), prec(-1, $._terminator)),
-          ),
+          repeat1(choice(seq($._statement, $._terminator), prec(-1, ';'))),
           optional($._statement),
         ),
         $._statement,
-        $._terminator,
       ),
 
     _statement: $ =>
@@ -56,7 +53,7 @@ module.exports = grammar({
       seq(
         choice(
           seq('0b', repeat(choice('0', '1', '_'))),
-          seq('0o', repeat(/[0-7]/)),
+          seq('0o', repeat(/[0-7_]/)),
           seq('0x', repeat(/[a-fA-F0-9_]/)),
           seq(/[1-9]/, repeat(/[0-9_]/)),
           choice('0', seq('0_', repeat(/[0-9_]/))),
