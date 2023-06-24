@@ -25,13 +25,12 @@ Percent string literals
 
 ---
 
-(source_file
-	(chained_string
-		(string (percent_string))
-		(string (percent_string))
-		(string (percent_string))
-		(string (percent_string))
-		(string (percent_string))))
+	(source_file
+	 (string (percent_string))
+	 (string (percent_string))
+	 (string (percent_string))
+	 (string (percent_string))
+	 (string (percent_string)))
 
 ================
 Integer literals
@@ -66,23 +65,15 @@ nil
 
 (source_file (nil))
 
-=======================
-Boolean literals - true
-=======================
+================
+Boolean literals
+================
 
 true
+false
 
 ---
 
-(source_file (true))
+(source_file (true) (false))
 
-
-=======================
-Boolean literals - true
-=======================
-
-false
-
-
-(source_file (false))
 
