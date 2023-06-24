@@ -1,4 +1,4 @@
-======================
+=p=====================
 Quoted string literals
 ======================
 
@@ -32,4 +32,34 @@ Percent string literals
 		(string (percent_string))
 		(string (percent_string))
 		(string (percent_string))))
+
+===========
+Nil literal
+===========
+
+nil
+
+---
+
+(source_file (nil))
+
+=======================
+Boolean literals - true
+=======================
+
+true
+
+---
+
+(source_file (true))
+
+
+=======================
+Boolean literals - true
+=======================
+
+false
+
+
+(source_file (false))
 

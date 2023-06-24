@@ -5,6 +5,8 @@ const ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u;
 module.exports = grammar({
   name: 'crystal',
 
+  extras: $ => [/\s/],
+
   word: $ => $.identifier,
 
   rules: {
@@ -21,7 +23,7 @@ module.exports = grammar({
         $._statement,
       ),
 
-    _statement: $ => choice($.string, $.chained_string),
+    _statement: $ => choice($.string, $.chained_string, $.nil, $.true, $.false),
 
     string: $ => choice($.quoted_string, $.percent_string),
 
@@ -37,6 +39,11 @@ module.exports = grammar({
         repeat(/[^)\]}>|]/),
         choice(')', ']', '}', '>', '|'),
       ),
+
+    nil: $ => 'nil',
+
+    true: $ => 'true',
+    false: $ => 'false',
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
   },

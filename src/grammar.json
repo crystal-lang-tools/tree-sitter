@@ -97,6 +97,18 @@
         {
           "type": "SYMBOL",
           "name": "chained_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nil"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "true"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "false"
         }
       ]
     },
@@ -214,6 +226,18 @@
           ]
         }
       ]
+    },
+    "nil": {
+      "type": "STRING",
+      "value": "nil"
+    },
+    "true": {
+      "type": "STRING",
+      "value": "true"
+    },
+    "false": {
+      "type": "STRING",
+      "value": "false"
     },
     "identifier": {
       "type": "TOKEN",
