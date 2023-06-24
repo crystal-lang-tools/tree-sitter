@@ -5,25 +5,37 @@ const ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u;
 module.exports = grammar({
   name: 'crystal',
 
-  extras: $ => [/\s/],
+  extras: $ => [/[\s\r\n]+/],
 
   word: $ => $.identifier,
 
   rules: {
     source_file: $ => seq(optional($._statement)),
 
-    _terminator: $ => choice(/\n/, ';'),
+    _terminator: $ => choice(/\r?\n/, ';'),
 
     _statements: $ =>
       choice(
         seq(
-          repeat1(choice(seq($._statement, $._terminator), prec(-1, ';'))),
+          repeat1(
+            choice(seq($._statement, $._terminator), prec(-1, $._terminator)),
+          ),
           optional($._statement),
         ),
         $._statement,
+        $._terminator,
       ),
 
-    _statement: $ => choice($.string, $.chained_string, $.nil, $.true, $.false),
+    _statement: $ =>
+      choice(
+        $.string,
+        $.chained_string,
+        $.nil,
+        $.true,
+        $.false,
+        $.integer,
+        $.identifier,
+      ),
 
     string: $ => choice($.quoted_string, $.percent_string),
 
@@ -38,6 +50,31 @@ module.exports = grammar({
         choice('(', '[', '{', '<', '|'),
         repeat(/[^)\]}>|]/),
         choice(')', ']', '}', '>', '|'),
+      ),
+
+    integer: $ =>
+      seq(
+        choice(
+          seq('0b', repeat(choice('0', '1', '_'))),
+          seq('0o', repeat(/[0-7]/)),
+          seq('0x', repeat(/[a-fA-F0-9_]/)),
+          seq(/[1-9]/, repeat(/[0-9_]/)),
+          choice('0', seq('0_', repeat(/[0-9_]/))),
+        ),
+        optional(
+          choice(
+            'i8',
+            'i16',
+            'i32',
+            'i64',
+            'i128',
+            'u8',
+            'u16',
+            'u32',
+            'u64',
+            'u128',
+          ),
+        ),
       ),
 
     nil: $ => 'nil',

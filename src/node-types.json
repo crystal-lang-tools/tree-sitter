@@ -15,6 +15,11 @@
     }
   },
   {
+    "type": "integer",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "percent_string",
     "named": true,
     "fields": {}
@@ -38,6 +43,14 @@
         },
         {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         },
         {
@@ -91,6 +104,30 @@
     "named": false
   },
   {
+    "type": "0",
+    "named": false
+  },
+  {
+    "type": "0_",
+    "named": false
+  },
+  {
+    "type": "0b",
+    "named": false
+  },
+  {
+    "type": "0o",
+    "named": false
+  },
+  {
+    "type": "0x",
+    "named": false
+  },
+  {
+    "type": "1",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -111,7 +148,35 @@
     "named": false
   },
   {
+    "type": "_",
+    "named": false
+  },
+  {
     "type": "false",
+    "named": true
+  },
+  {
+    "type": "i128",
+    "named": false
+  },
+  {
+    "type": "i16",
+    "named": false
+  },
+  {
+    "type": "i32",
+    "named": false
+  },
+  {
+    "type": "i64",
+    "named": false
+  },
+  {
+    "type": "i8",
+    "named": false
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {
@@ -121,6 +186,26 @@
   {
     "type": "true",
     "named": true
+  },
+  {
+    "type": "u128",
+    "named": false
+  },
+  {
+    "type": "u16",
+    "named": false
+  },
+  {
+    "type": "u32",
+    "named": false
+  },
+  {
+    "type": "u64",
+    "named": false
+  },
+  {
+    "type": "u8",
+    "named": false
   },
   {
     "type": "{",

@@ -33,6 +33,29 @@ Percent string literals
 		(string (percent_string))
 		(string (percent_string))))
 
+================
+Integer literals
+================
+
+123_456
+
+0b1010101110
+
+0o644_u16
+
+0xFc4d3e
+
+0
+
+---
+
+(source_file
+	(integer)
+	(integer)
+	(integer)
+	(integer)
+	(integer))
+
 ===========
 Nil literal
 ===========
