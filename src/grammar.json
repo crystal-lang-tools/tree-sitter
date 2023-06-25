@@ -250,6 +250,26 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "STRING",
+              "value": "0"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "0_"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[0-9_]"
+                  }
+                }
+              ]
+            },
+            {
               "type": "SEQ",
               "members": [
                 {
@@ -323,31 +343,6 @@
                     "type": "PATTERN",
                     "value": "[0-9_]"
                   }
-                }
-              ]
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "0"
-                },
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "0_"
-                    },
-                    {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[0-9_]"
-                      }
-                    }
-                  ]
                 }
               ]
             }
