@@ -31,6 +31,7 @@ module.exports = grammar({
         $.true,
         $.false,
         $.integer,
+        $.float,
         $.identifier,
       ),
 
@@ -72,6 +73,23 @@ module.exports = grammar({
             'u128',
           ),
         ),
+      ),
+
+    float: $ =>
+      seq(
+        choice('0', '0_', /[1-9]/),
+        repeat(/[0-9_]/),
+        '.',
+        repeat1(/[0-9_]/),
+        optional(
+          seq(
+            choice('e', 'E'),
+            optional(choice('+', '-')),
+            /[0-9_]/,
+            repeat(/[0-9_]/),
+          ),
+        ),
+        optional(choice('f32', 'f64')),
       ),
 
     nil: $ => 'nil',

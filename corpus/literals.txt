@@ -1,4 +1,4 @@
-=p=====================
+======================
 Quoted string literals
 ======================
 
@@ -25,12 +25,12 @@ Percent string literals
 
 ---
 
-	(source_file
-	 (string (percent_string))
-	 (string (percent_string))
-	 (string (percent_string))
-	 (string (percent_string))
-	 (string (percent_string)))
+(source_file
+	(string (percent_string))
+	(string (percent_string))
+	(string (percent_string))
+	(string (percent_string))
+	(string (percent_string)))
 
 ================
 Integer literals
@@ -55,6 +55,23 @@ Integer literals
 	(integer)
 	(integer))
 
+==============
+Float literals
+==============
+
+0.0
+
+3.14159265
+
+42.0e3f32
+
+---
+
+(source_file
+	(float)
+	(float)
+	(float))
+
 ===========
 Nil literal
 ===========
@@ -75,5 +92,4 @@ false
 ---
 
 (source_file (true) (false))
-
 

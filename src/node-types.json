@@ -15,6 +15,11 @@
     }
   },
   {
+    "type": "float",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "integer",
     "named": true,
     "fields": {}
@@ -43,6 +48,10 @@
         },
         {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
@@ -104,6 +113,18 @@
     "named": false
   },
   {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": "0",
     "named": false
   },
@@ -140,6 +161,10 @@
     "named": false
   },
   {
+    "type": "E",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -149,6 +174,18 @@
   },
   {
     "type": "_",
+    "named": false
+  },
+  {
+    "type": "e",
+    "named": false
+  },
+  {
+    "type": "f32",
+    "named": false
+  },
+  {
+    "type": "f64",
     "named": false
   },
   {
