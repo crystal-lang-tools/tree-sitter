@@ -1,5 +1,56 @@
 [
   {
+    "type": "array",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "chained_string",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "chained_string",
     "named": true,
     "fields": {},
@@ -13,6 +64,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "constant",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "float",
@@ -42,6 +98,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "array",
+          "named": true
+        },
         {
           "type": "chained_string",
           "named": true
@@ -117,6 +177,10 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "-",
     "named": false
   },
@@ -146,6 +210,10 @@
   },
   {
     "type": "1",
+    "named": false
+  },
+  {
+    "type": "::",
     "named": false
   },
   {
@@ -219,6 +287,10 @@
   {
     "type": "nil",
     "named": true
+  },
+  {
+    "type": "of",
+    "named": false
   },
   {
     "type": "true",

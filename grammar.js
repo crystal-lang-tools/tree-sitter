@@ -32,6 +32,7 @@ module.exports = grammar({
         $.false,
         $.integer,
         $.float,
+        $.array,
         $.identifier,
       ),
 
@@ -97,6 +98,30 @@ module.exports = grammar({
     true: $ => 'true',
     false: $ => 'false',
 
+    array: $ =>
+      seq(
+        '[',
+        optional(
+          choice(
+            $._statement,
+            seq($._statement, repeat(seq(',', $._statement))),
+          ),
+        ),
+        ']',
+        optional(seq('of', $.constant)),
+      ),
+
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
+
+    constant: $ =>
+      prec.right(
+        seq(
+          optional('::'),
+          $._constant_segment,
+          repeat(seq('::', $._constant_segment)),
+        ),
+      ),
+
+    _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
   },
 });
