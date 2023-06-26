@@ -33,7 +33,9 @@ module.exports = grammar({
         $.integer,
         $.float,
         $.array,
+        $.hash,
         $.identifier,
+        $.constant,
       ),
 
     string: $ => choice($.quoted_string, $.percent_string),
@@ -110,6 +112,34 @@ module.exports = grammar({
         ),
         ']',
         optional(seq('of', $.constant)),
+      ),
+
+    hash: $ =>
+      choice(
+        seq(
+          '{',
+          $._statement,
+          '=>',
+          $._statement,
+          repeat(seq(',', $._statement, '=>', $._statement)),
+          '}',
+          optional(
+            seq(
+              'of',
+              field('key_type', $.constant),
+              '=>',
+              field('value_type', $.constant),
+            ),
+          ),
+        ),
+        seq(
+          '{',
+          '}',
+          'of',
+          field('key_type', $.constant),
+          '=>',
+          field('value_type', $.constant),
+        ),
       ),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),

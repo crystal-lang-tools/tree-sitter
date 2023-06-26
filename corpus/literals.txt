@@ -116,3 +116,37 @@ Array literals
 		(constant))
 	(array (constant)))
 
+=============
+Hash Literals
+=============
+
+{"foo" => "bar"}
+
+{1 => "one", 2 => "two"}
+
+{} of Int32 => String
+
+{1.2 => 1, 4.5 => 5} of Float32 => Int32
+
+---
+
+(source_file
+	(hash
+		(string (quoted_string))
+		(string (quoted_string)))
+	(hash
+		(integer)
+		(string (quoted_string))
+		(integer)
+		(string (quoted_string)))
+	(hash
+		(constant)
+		(constant))
+	(hash
+		(float)
+		(integer)
+		(float)
+		(integer)
+		(constant)
+		(constant)))
+
