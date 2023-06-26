@@ -166,8 +166,8 @@ module.exports = grammar({
         // repeat($.annotation),
         optional(field('external_name', $.identifier)),
         field('name', $.identifier), // support class/instance vars
-        optional(field('type', seq(':', $.constant))),
-        optional(field('default_value', seq('=', $._statement))),
+        optional(seq(':', field('type', $.constant))),
+        optional(seq('=', field('default_value', $._statement))),
       ),
 
     block_params: $ =>
