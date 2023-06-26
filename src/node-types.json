@@ -334,13 +334,9 @@
     "named": true,
     "fields": {
       "default_value": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "=",
-            "named": false
-          },
           {
             "type": "array",
             "named": true
@@ -412,13 +408,9 @@
         ]
       },
       "type": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": ":",
-            "named": false
-          },
           {
             "type": "constant",
             "named": true
@@ -451,13 +443,9 @@
         ]
       },
       "return_type": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": ":",
-            "named": false
-          },
           {
             "type": "constant",
             "named": true

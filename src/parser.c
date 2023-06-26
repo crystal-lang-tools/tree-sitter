@@ -88,8 +88,8 @@ enum {
   sym_hash = 69,
   sym_proc = 70,
   sym_param = 71,
-  sym_block_params = 72,
-  sym_block = 73,
+  sym_block = 72,
+  sym_block_params = 73,
   sym_brace_block = 74,
   sym_do_end_block = 75,
   sym_constant = 76,
@@ -180,8 +180,8 @@ static const char * const ts_symbol_names[] = {
   [sym_hash] = "hash",
   [sym_proc] = "proc",
   [sym_param] = "param",
-  [sym_block_params] = "block_params",
   [sym_block] = "block",
+  [sym_block_params] = "block_params",
   [sym_brace_block] = "brace_block",
   [sym_do_end_block] = "do_end_block",
   [sym_constant] = "constant",
@@ -272,8 +272,8 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_hash] = sym_hash,
   [sym_proc] = sym_proc,
   [sym_param] = sym_param,
-  [sym_block_params] = sym_block_params,
   [sym_block] = sym_block,
+  [sym_block_params] = sym_block_params,
   [sym_brace_block] = sym_brace_block,
   [sym_do_end_block] = sym_do_end_block,
   [sym_constant] = sym_constant,
@@ -580,11 +580,11 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_block_params] = {
+  [sym_block] = {
     .visible = true,
     .named = true,
   },
-  [sym_block] = {
+  [sym_block_params] = {
     .visible = true,
     .named = true,
   },
@@ -676,21 +676,21 @@ static const char * const ts_field_names[] = {
 static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [1] = {.index = 0, .length = 1},
   [2] = {.index = 1, .length = 2},
-  [3] = {.index = 3, .length = 2},
-  [4] = {.index = 5, .length = 3},
-  [5] = {.index = 8, .length = 3},
-  [6] = {.index = 11, .length = 1},
-  [7] = {.index = 12, .length = 1},
-  [8] = {.index = 13, .length = 2},
-  [9] = {.index = 15, .length = 4},
-  [10] = {.index = 19, .length = 4},
-  [11] = {.index = 23, .length = 2},
-  [12] = {.index = 25, .length = 5},
-  [13] = {.index = 30, .length = 3},
-  [14] = {.index = 33, .length = 6},
-  [15] = {.index = 39, .length = 4},
-  [16] = {.index = 43, .length = 2},
-  [17] = {.index = 45, .length = 2},
+  [3] = {.index = 3, .length = 1},
+  [4] = {.index = 4, .length = 2},
+  [5] = {.index = 6, .length = 2},
+  [6] = {.index = 8, .length = 1},
+  [7] = {.index = 9, .length = 1},
+  [8] = {.index = 10, .length = 2},
+  [9] = {.index = 12, .length = 3},
+  [10] = {.index = 15, .length = 3},
+  [11] = {.index = 18, .length = 2},
+  [12] = {.index = 20, .length = 3},
+  [13] = {.index = 23, .length = 2},
+  [14] = {.index = 25, .length = 4},
+  [15] = {.index = 29, .length = 3},
+  [16] = {.index = 32, .length = 2},
+  [17] = {.index = 34, .length = 2},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -700,62 +700,51 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_external_name, 0},
     {field_name, 1},
   [3] =
-    {field_return_type, 1},
     {field_return_type, 2},
-  [5] =
+  [4] =
     {field_name, 0},
-    {field_type, 1},
     {field_type, 2},
-  [8] =
-    {field_default_value, 1},
+  [6] =
     {field_default_value, 2},
     {field_name, 0},
-  [11] =
+  [8] =
     {field_params, 2},
-  [12] =
+  [9] =
     {field_params, 1},
-  [13] =
+  [10] =
     {field_key_type, 3},
     {field_value_type, 5},
-  [15] =
+  [12] =
     {field_external_name, 0},
     {field_name, 1},
-    {field_type, 2},
     {field_type, 3},
-  [19] =
-    {field_default_value, 2},
+  [15] =
     {field_default_value, 3},
     {field_external_name, 0},
     {field_name, 1},
-  [23] =
+  [18] =
     {field_params, 2},
     {field_params, 3},
-  [25] =
-    {field_default_value, 3},
+  [20] =
     {field_default_value, 4},
     {field_name, 0},
-    {field_type, 1},
     {field_type, 2},
-  [30] =
+  [23] =
     {field_params, 2},
-    {field_return_type, 4},
     {field_return_type, 5},
-  [33] =
-    {field_default_value, 4},
+  [25] =
     {field_default_value, 5},
     {field_external_name, 0},
     {field_name, 1},
-    {field_type, 2},
     {field_type, 3},
-  [39] =
+  [29] =
     {field_params, 2},
     {field_params, 3},
-    {field_return_type, 5},
     {field_return_type, 6},
-  [43] =
+  [32] =
     {field_key_type, 6},
     {field_value_type, 8},
-  [45] =
+  [34] =
     {field_key_type, 7},
     {field_value_type, 9},
 };

@@ -157,7 +157,7 @@ module.exports = grammar({
             ')',
           ),
         ),
-        optional(field('return_type', seq(':', $.constant))),
+        optional(seq(':', field('return_type', $.constant))),
         $.block,
       ),
 
@@ -170,14 +170,14 @@ module.exports = grammar({
         optional(seq('=', field('default_value', $._statement))),
       ),
 
+    block: $ => choice($.brace_block, $.do_end_block),
+
     block_params: $ =>
       seq(
         '|',
         field('params', $.identifier, repeat(seq(',', $.identifier))),
         '|',
       ),
-
-    block: $ => choice($.brace_block, $.do_end_block),
 
     brace_block: $ =>
       seq('{', optional($.block_params), optional($._statements), '}'),
