@@ -150,3 +150,57 @@ Hash Literals
 		(constant)
 		(constant)))
 
+=============
+Proc literals
+=============
+
+-> { }
+
+-> : Nil { nil }
+
+-> do
+  "hello world"
+end
+
+-> (x) { x }
+
+-> (x, y) { }
+
+-> (a : Int32, b : Int32) do
+  a
+  b
+end
+
+---
+
+(source_file
+	(proc
+		(block (brace_block)))
+	(proc
+		(constant)
+		(block (brace_block
+			(nil))))
+	(proc
+		(block (do_end_block
+			(string (quoted_string)))))
+	(proc
+		(param (identifier))
+		(block (brace_block
+			(identifier))))
+	(proc
+		(param
+			(identifier))
+		(param
+			(identifier))
+		(block (brace_block)))
+	(proc
+		(param
+			(identifier)
+			(constant))
+		(param
+			(identifier)
+			(constant))
+		(block (do_end_block
+			(identifier)
+			(identifier)))))
+

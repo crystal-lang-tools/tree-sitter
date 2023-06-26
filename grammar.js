@@ -34,6 +34,7 @@ module.exports = grammar({
         $.float,
         $.array,
         $.hash,
+        $.proc,
         $.identifier,
         $.constant,
       ),
@@ -141,6 +142,48 @@ module.exports = grammar({
           field('value_type', $.constant),
         ),
       ),
+
+    proc: $ =>
+      seq(
+        '->',
+        optional(
+          seq(
+            '(',
+            field(
+              'params',
+              seq($.param, repeat(seq(',', $.param))),
+              optional(','),
+            ),
+            ')',
+          ),
+        ),
+        optional(field('return_type', seq(':', $.constant))),
+        $.block,
+      ),
+
+    param: $ =>
+      seq(
+        // repeat($.annotation),
+        optional(field('external_name', $.identifier)),
+        field('name', $.identifier), // support class/instance vars
+        optional(field('type', seq(':', $.constant))),
+        optional(field('default_value', seq('=', $._statement))),
+      ),
+
+    block_params: $ =>
+      seq(
+        '|',
+        field('params', $.identifier, repeat(seq(',', $.identifier))),
+        '|',
+      ),
+
+    block: $ => choice($.brace_block, $.do_end_block),
+
+    brace_block: $ =>
+      seq('{', optional($.block_params), optional($._statements), '}'),
+
+    do_end_block: $ =>
+      seq('do', optional($.block_params), optional($._statements), 'end'),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
