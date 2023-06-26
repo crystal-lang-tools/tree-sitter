@@ -1,27 +1,35 @@
 {
-  "name": "tree-sitter-crystal",
-  "version": "0.1.0",
-  "description": "",
-  "main": "bindings/node",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Devaune Whittle <https://github.com/devnote-dev>",
-  "license": "MIT",
-  "dependencies": {
-    "nan": "^2.17.0"
-  },
-  "devDependencies": {
-    "tree-sitter-cli": "^0.20.0"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.cr",
-      "file-types": [
-        "cr"
-      ],
-      "highlights": []
-    }
-  ]
+	"name": "tree-sitter-crystal",
+	"version": "0.1.0",
+	"description": "",
+	"main": "bindings/node",
+	"scripts": {
+		"format": "prettier --write ./grammar.js"
+	},
+	"keywords": [],
+	"author": "Devaune Whittle <https://github.com/devnote-dev>",
+	"license": "MIT",
+	"dependencies": {
+		"nan": "^2.17.0"
+	},
+	"devDependencies": {
+		"prettier": "^2.8.8",
+		"tree-sitter-cli": "^0.20.0"
+	},
+	"tree-sitter": [
+		{
+			"scope": "source.cr",
+			"file-types": [
+				"cr"
+			],
+			"highlights": []
+		}
+	],
+	"prettier": {
+		"arrowParens": "avoid",
+		"singleQuote": true,
+		"semi": true,
+		"trailingComma": "all",
+		"useTabs": false
+	}
 }

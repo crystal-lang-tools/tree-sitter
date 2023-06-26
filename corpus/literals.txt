@@ -1,0 +1,206 @@
+======================
+Quoted string literals
+======================
+
+"hello world"
+
+---
+
+(source_file
+	(string (quoted_string)))
+
+=======================
+Percent string literals
+=======================
+
+%(parenthesised strings)
+
+%[bracket strings]
+
+%{braced strings}
+
+%<whatever these are called string>
+
+%|and pipe strings|
+
+---
+
+(source_file
+	(string (percent_string))
+	(string (percent_string))
+	(string (percent_string))
+	(string (percent_string))
+	(string (percent_string)))
+
+================
+Integer literals
+================
+
+123_456
+
+0b1010101110
+
+0o644_u16
+
+0xFc4d3e
+
+0
+
+---
+
+(source_file
+	(integer)
+	(integer)
+	(integer)
+	(integer)
+	(integer))
+
+==============
+Float literals
+==============
+
+0.0
+
+3.14159265
+
+42.0e3f32
+
+---
+
+(source_file
+	(float)
+	(float)
+	(float))
+
+===========
+Nil literal
+===========
+
+nil
+
+---
+
+(source_file (nil))
+
+================
+Boolean literals
+================
+
+true
+false
+
+---
+
+(source_file (true) (false))
+
+==============
+Array literals
+==============
+
+[1, 2, 3]
+
+["foo", "bar"] of String
+
+[] of Int32
+
+---
+
+(source_file
+	(array
+		(integer)
+		(integer)
+		(integer))
+	(array
+		(string (quoted_string))
+		(string (quoted_string))
+		(constant))
+	(array (constant)))
+
+=============
+Hash Literals
+=============
+
+{"foo" => "bar"}
+
+{1 => "one", 2 => "two"}
+
+{} of Int32 => String
+
+{1.2 => 1, 4.5 => 5} of Float32 => Int32
+
+---
+
+(source_file
+	(hash
+		(string (quoted_string))
+		(string (quoted_string)))
+	(hash
+		(integer)
+		(string (quoted_string))
+		(integer)
+		(string (quoted_string)))
+	(hash
+		(constant)
+		(constant))
+	(hash
+		(float)
+		(integer)
+		(float)
+		(integer)
+		(constant)
+		(constant)))
+
+=============
+Proc literals
+=============
+
+-> { }
+
+-> : Nil { nil }
+
+-> do
+  "hello world"
+end
+
+-> (x) { x }
+
+-> (x, y) { }
+
+-> (a : Int32, b : Int32) do
+  a
+  b
+end
+
+---
+
+(source_file
+	(proc
+		(block (brace_block)))
+	(proc
+		(constant)
+		(block (brace_block
+			(nil))))
+	(proc
+		(block (do_end_block
+			(string (quoted_string)))))
+	(proc
+		(param (identifier))
+		(block (brace_block
+			(identifier))))
+	(proc
+		(param
+			(identifier))
+		(param
+			(identifier))
+		(block (brace_block)))
+	(proc
+		(param
+			(identifier)
+			(constant))
+		(param
+			(identifier)
+			(constant))
+		(block (do_end_block
+			(identifier)
+			(identifier)))))
+
