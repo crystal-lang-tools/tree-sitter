@@ -35,7 +35,8 @@ module.exports = grammar({
         $.array,
         $.hash,
         $.proc,
-		$.char,
+        $.char,
+        $.symbol,
         $.identifier,
         $.constant,
       ),
@@ -210,6 +211,11 @@ module.exports = grammar({
           ),
         ),
         token.immediate("'"),
+      ),
+
+    symbol: $ =>
+      choice(
+        seq(':', choice($.identifier, $.string)),
       ),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),

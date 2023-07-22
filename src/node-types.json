@@ -56,6 +56,10 @@
           "named": true
         },
         {
+          "type": "symbol",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         }
@@ -158,6 +162,10 @@
           "named": true
         },
         {
+          "type": "symbol",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         }
@@ -250,6 +258,10 @@
           "named": true
         },
         {
+          "type": "symbol",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         }
@@ -339,6 +351,10 @@
           "named": true
         },
         {
+          "type": "symbol",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         }
@@ -404,6 +420,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "symbol",
             "named": true
           },
           {
@@ -551,6 +571,10 @@
           "named": true
         },
         {
+          "type": "symbol",
+          "named": true
+        },
+        {
           "type": "true",
           "named": true
         }
@@ -571,6 +595,25 @@
         },
         {
           "type": "quoted_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]

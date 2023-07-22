@@ -239,3 +239,20 @@ Char literals
 	(char)
 	(char))
 
+===============
+Symbol literals
+===============
+
+:symbol
+
+:some_symbol
+
+:"some string symbol"
+
+---
+
+(source_file
+	(symbol)
+	(symbol)
+	(symbol))
+
