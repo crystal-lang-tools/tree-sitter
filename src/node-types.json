@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "char",
+          "named": true
+        },
+        {
           "type": "constant",
           "named": true
         },
@@ -114,6 +118,10 @@
           "named": true
         },
         {
+          "type": "char",
+          "named": true
+        },
+        {
           "type": "constant",
           "named": true
         },
@@ -172,6 +180,11 @@
     }
   },
   {
+    "type": "char",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "constant",
     "named": true,
     "fields": {}
@@ -194,6 +207,10 @@
         },
         {
           "type": "chained_string",
+          "named": true
+        },
+        {
+          "type": "char",
           "named": true
         },
         {
@@ -282,6 +299,10 @@
           "named": true
         },
         {
+          "type": "char",
+          "named": true
+        },
+        {
           "type": "constant",
           "named": true
         },
@@ -343,6 +364,10 @@
           },
           {
             "type": "chained_string",
+            "named": true
+          },
+          {
+            "type": "char",
             "named": true
           },
           {
@@ -486,6 +511,10 @@
           "named": true
         },
         {
+          "type": "char",
+          "named": true
+        },
+        {
           "type": "constant",
           "named": true
         },
@@ -553,6 +582,10 @@
   },
   {
     "type": "%",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -644,11 +677,23 @@
     "named": false
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
   {
     "type": "_",
+    "named": false
+  },
+  {
+    "type": "a",
+    "named": false
+  },
+  {
+    "type": "b",
     "named": false
   },
   {
@@ -661,6 +706,10 @@
   },
   {
     "type": "end",
+    "named": false
+  },
+  {
+    "type": "f",
     "named": false
   },
   {
@@ -700,11 +749,23 @@
     "named": true
   },
   {
+    "type": "n",
+    "named": false
+  },
+  {
     "type": "nil",
     "named": true
   },
   {
     "type": "of",
+    "named": false
+  },
+  {
+    "type": "r",
+    "named": false
+  },
+  {
+    "type": "t",
     "named": false
   },
   {
@@ -729,6 +790,10 @@
   },
   {
     "type": "u8",
+    "named": false
+  },
+  {
+    "type": "v",
     "named": false
   },
   {

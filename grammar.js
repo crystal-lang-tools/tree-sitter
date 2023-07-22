@@ -35,6 +35,7 @@ module.exports = grammar({
         $.array,
         $.hash,
         $.proc,
+		$.char,
         $.identifier,
         $.constant,
       ),
@@ -184,6 +185,32 @@ module.exports = grammar({
 
     do_end_block: $ =>
       seq('do', optional($.block_params), optional($._statements), 'end'),
+
+    char: $ =>
+      seq(
+        "'",
+        choice(
+          token.immediate(/[^\\]/),
+          seq(
+            '\\',
+            choice(
+              '0',
+              '\\',
+              "'",
+              'a',
+              'b',
+              'e',
+              'f',
+              'n',
+              'r',
+              't',
+              'v',
+              choice(/u[0-9a-fA-F]{4}/, /u\{[0-9a-fA-F]{1,6}\}/),
+            ),
+          ),
+        ),
+        token.immediate("'"),
+      ),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
