@@ -117,7 +117,7 @@ Array literals
 	(array (constant)))
 
 =============
-Hash Literals
+Hash literals
 =============
 
 {"foo" => "bar"}
@@ -203,4 +203,56 @@ end
 		(block (do_end_block
 			(identifier)
 			(identifier)))))
+
+=============
+Char literals
+=============
+
+'a'
+
+'\0'
+
+'あ'
+
+'"'
+
+' '
+
+'\\'
+
+'\u{0}'
+
+'\u00aF'
+
+'\u{10FFFF}'
+
+---
+
+(source_file
+	(char)
+	(char)
+	(char)
+	(char)
+	(char)
+	(char)
+	(char)
+	(char)
+	(char))
+
+===============
+Symbol literals
+===============
+
+:symbol
+
+:some_symbol
+
+:"some string symbol"
+
+---
+
+(source_file
+	(symbol)
+	(symbol)
+	(symbol))
 

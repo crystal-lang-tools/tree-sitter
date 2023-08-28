@@ -35,6 +35,8 @@ module.exports = grammar({
         $.array,
         $.hash,
         $.proc,
+        $.char,
+        $.symbol,
         $.identifier,
         $.constant,
       ),
@@ -157,7 +159,7 @@ module.exports = grammar({
             ')',
           ),
         ),
-        optional(field('return_type', seq(':', $.constant))),
+        optional(seq(':', field('return_type', $.constant))),
         $.block,
       ),
 
@@ -170,6 +172,8 @@ module.exports = grammar({
         optional(seq('=', field('default_value', $._statement))),
       ),
 
+    block: $ => choice($.brace_block, $.do_end_block),
+
     block_params: $ =>
       seq(
         '|',
@@ -177,13 +181,42 @@ module.exports = grammar({
         '|',
       ),
 
-    block: $ => choice($.brace_block, $.do_end_block),
-
     brace_block: $ =>
       seq('{', optional($.block_params), optional($._statements), '}'),
 
     do_end_block: $ =>
       seq('do', optional($.block_params), optional($._statements), 'end'),
+
+    char: $ =>
+      seq(
+        "'",
+        choice(
+          token.immediate(/[^\\]/),
+          seq(
+            '\\',
+            choice(
+              '0',
+              '\\',
+              "'",
+              'a',
+              'b',
+              'e',
+              'f',
+              'n',
+              'r',
+              't',
+              'v',
+              choice(/u[0-9a-fA-F]{4}/, /u\{[0-9a-fA-F]{1,6}\}/),
+            ),
+          ),
+        ),
+        token.immediate("'"),
+      ),
+
+    symbol: $ =>
+      choice(
+        seq(':', choice($.identifier, $.string)),
+      ),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
