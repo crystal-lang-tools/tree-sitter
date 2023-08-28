@@ -5,7 +5,8 @@
 	"main": "bindings/node",
 	"scripts": {
 		"format": "prettier --write ./grammar.js",
-		"lint": "eslint grammar.js"
+		"lint": "eslint grammar.js",
+		"test": "tree-sitter test"
 	},
 	"keywords": [],
 	"author": "Devaune Whittle <https://github.com/devnote-dev>",
