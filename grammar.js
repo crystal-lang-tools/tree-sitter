@@ -2,6 +2,14 @@ const const_start = /[A-Z]/,
   ident_start = /[a-z_\u{00a0}-\u{10ffff}]/u,
   ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u;
 
+const bracket_pairs = [
+  ['(', ')', '\)'],
+  ['[', ']', '\]'],
+  ['{', '}', '\}'],
+  ['<', '>', '>'],
+  ['|', '|', '\|']
+];
+
 module.exports = grammar({
   name: 'crystal',
 
@@ -26,7 +34,7 @@ module.exports = grammar({
     _statement: $ =>
       choice(
         $.string,
-        $.chained_string,
+        $.regex_literal,
         $.nil,
         $.true,
         $.false,
@@ -37,24 +45,35 @@ module.exports = grammar({
         $.proc,
         $.char,
         $.symbol,
+        $.instance_variable,
+        $.class_variable,
+        $.self,
         $.identifier,
         $.constant,
+        $.comment,
       ),
 
     string: $ => choice($.quoted_string, $.percent_string),
 
-    chained_string: $ => seq($.string, repeat1($.string)),
-
     quoted_string: $ => seq('"', repeat(/[^"]/), '"'),
 
-    // TODO: redo this lazy implementation
+    // TODO: Allow nested brackets
     percent_string: $ =>
-      seq(
-        '%',
-        choice('(', '[', '{', '<', '|'),
-        repeat(/[^)\]}>|]/),
-        choice(')', ']', '}', '>', '|'),
+      choice(
+        ...bracket_pairs.map(([start, end, escaped_end]) =>
+          seq(
+            '%',
+            optional('q'),
+            start,
+            repeat(
+              new RegExp(`[^${escaped_end}]`),
+            ),
+            end,
+          )
+        ),
       ),
+
+    regex_literal: $ => seq('/', repeat(/[^\/]|\\\//), '/'),
 
     integer: $ =>
       seq(
@@ -214,9 +233,16 @@ module.exports = grammar({
       ),
 
     symbol: $ =>
-      choice(
-        seq(':', choice($.identifier, $.string)),
-      ),
+      seq(':', choice($.identifier, $.string)),
+
+    instance_variable: $ =>
+      seq("@", $.identifier),
+
+    class_variable: $ =>
+      seq("@@", $.identifier),
+
+    self: $ =>
+      token("self"),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
@@ -230,5 +256,8 @@ module.exports = grammar({
       ),
 
     _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
+
+    comment: $ =>
+      seq("#", /.*/),
   },
 });
