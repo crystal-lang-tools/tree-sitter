@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
           "type": "char",
           "named": true
         },
@@ -53,6 +57,97 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "proc",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "class_variable",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "instance_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "operator",
           "named": true
         },
         {
@@ -130,11 +225,19 @@
           "named": true
         },
         {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
           "type": "block_params",
           "named": true
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "class",
           "named": true
         },
         {
@@ -171,6 +274,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "module",
           "named": true
         },
         {
@@ -210,6 +317,101 @@
     "fields": {}
   },
   {
+    "type": "class",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "class_variable",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "instance_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "module",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "proc",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "class_variable",
     "named": true,
     "fields": {},
@@ -247,11 +449,19 @@
           "named": true
         },
         {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
           "type": "block_params",
           "named": true
         },
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "class",
           "named": true
         },
         {
@@ -288,6 +498,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "module",
           "named": true
         },
         {
@@ -357,6 +571,10 @@
       "types": [
         {
           "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_operation",
           "named": true
         },
         {
@@ -451,6 +669,106 @@
     "fields": {}
   },
   {
+    "type": "module",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "class_variable",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "instance_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "module",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "proc",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "param",
     "named": true,
     "fields": {
@@ -460,6 +778,10 @@
         "types": [
           {
             "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_operation",
             "named": true
           },
           {
@@ -632,7 +954,15 @@
           "named": true
         },
         {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "class",
           "named": true
         },
         {
@@ -669,6 +999,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "module",
           "named": true
         },
         {
@@ -741,6 +1075,10 @@
     }
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -753,6 +1091,10 @@
     "named": false
   },
   {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "'",
     "named": false
   },
@@ -762,6 +1104,14 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "**",
     "named": false
   },
   {
@@ -829,7 +1179,27 @@
     "named": false
   },
   {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<=>",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": "===",
     "named": false
   },
   {
@@ -837,7 +1207,19 @@
     "named": false
   },
   {
+    "type": "=~",
+    "named": false
+  },
+  {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -865,6 +1247,10 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
     "type": "_",
     "named": false
   },
@@ -874,6 +1260,10 @@
   },
   {
     "type": "b",
+    "named": false
+  },
+  {
+    "type": "class",
     "named": false
   },
   {
@@ -927,6 +1317,10 @@
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "module",
+    "named": false
   },
   {
     "type": "n",

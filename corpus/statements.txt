@@ -1,0 +1,48 @@
+================
+Class definition
+================
+
+class MyClass < MySuperClass; end
+
+class MyClass::MyOtherClass
+    "string"
+    "string2"
+end
+
+---
+
+(source_file
+	(class
+		(constant)
+		(constant))
+	(class
+		(constant)
+		(string
+			(quoted_string))
+		(string
+			(quoted_string))))
+
+=================
+Module definition
+=================
+
+module MyMod; end
+
+module MyMod::MyOtherMod
+	1
+	2
+	3
+	4
+end
+
+---
+
+(source_file
+	(module
+		(constant))
+	(module
+		(constant)
+		(integer)
+		(integer)
+		(integer)
+		(integer)))

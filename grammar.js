@@ -17,6 +17,12 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  conflicts: $ => [
+    [$.percent_string, $._binary_operator],
+    [$.regex_literal, $._binary_operator],
+    [$.integer]
+  ],
+
   rules: {
     source_file: $ => seq(optional($._statements)),
 
@@ -33,6 +39,33 @@ module.exports = grammar({
 
     _statement: $ =>
       choice(
+        $.class,
+        $.module,
+        $._expression
+      ),
+
+    class: $ =>
+      seq(
+        "class",
+        $.constant,
+        optional(seq("<", $.constant)),
+        $._terminator,
+        optional($._statements),
+        'end'
+      ),
+
+    module: $ =>
+      seq(
+        "module",
+        $.constant,
+        $._terminator,
+        optional($._statements),
+        'end'
+      ),
+
+    _expression: $ =>
+      choice(
+        $.binary_operation,
         $.string,
         $.regex_literal,
         $.nil,
@@ -128,8 +161,8 @@ module.exports = grammar({
         '[',
         optional(
           choice(
-            $._statement,
-            seq($._statement, repeat(seq(',', $._statement))),
+            $._expression,
+            seq($._expression, repeat(seq(',', $._expression))),
           ),
         ),
         ']',
@@ -140,10 +173,10 @@ module.exports = grammar({
       choice(
         seq(
           '{',
-          $._statement,
+          $._expression,
           '=>',
-          $._statement,
-          repeat(seq(',', $._statement, '=>', $._statement)),
+          $._expression,
+          repeat(seq(',', $._expression, '=>', $._expression)),
           '}',
           optional(
             seq(
@@ -188,7 +221,12 @@ module.exports = grammar({
         optional(field('external_name', $.identifier)),
         field('name', $.identifier), // support class/instance vars
         optional(seq(':', field('type', $.constant))),
-        optional(seq('=', field('default_value', $._statement))),
+        optional(seq('=', field('default_value', $._expression))),
+      ),
+
+    args: $ =>
+      seq(
+        $._expression
       ),
 
     block: $ => choice($.brace_block, $.do_end_block),
@@ -259,5 +297,16 @@ module.exports = grammar({
 
     comment: $ =>
       seq("#", /.*/),
+
+    // https://github.com/will/tree-sitter-crystal/blob/15597b307b18028b04d288561f9c29794621562b/grammar.js#L545
+    binary_operation: $ => prec.left(seq(
+      $._expression,
+      alias($._binary_operator, $.operator),
+      $._expression
+    )),
+
+    _binary_operator: $ => choice(
+      "+", "-", "*", "/", "%", "&", "|", "^", "**", ">>", "<<", "==", "!=", "<", "<=", ">", ">=", "<=>", "===", "=~"
+    ),
   },
 });
