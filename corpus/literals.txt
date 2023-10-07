@@ -23,6 +23,8 @@ Percent string literals
 
 %|and pipe strings|
 
+%q(and ones with an optional q)
+
 ---
 
 (source_file
@@ -30,7 +32,26 @@ Percent string literals
 	(string (percent_string))
 	(string (percent_string))
 	(string (percent_string))
+	(string (percent_string))
 	(string (percent_string)))
+
+==============
+Regex literals
+==============
+
+/matches regex literal/
+
+"/but not ones in strings/"
+
+/also doesn't match \/ escaped ones/
+
+---
+
+(source_file
+	(regex_literal)
+	(string
+		(quoted_string))
+	(regex_literal))
 
 ================
 Integer literals
@@ -252,7 +273,47 @@ Symbol literals
 ---
 
 (source_file
-	(symbol)
-	(symbol)
-	(symbol))
+  (symbol
+    (identifier))
+  (symbol
+    (identifier))
+  (symbol
+    (string
+      (quoted_string))))
 
+=========
+Variables
+=========
+
+variable
+
+@instance_var
+
+@@class_var
+
+self
+
+---
+
+(source_file
+	(identifier)
+	(instance_variable
+		(identifier))
+	(class_variable
+		(identifier))
+	(self))
+
+========
+Comments
+========
+
+# matches comments
+
+"but not ones # in strings"
+
+---
+
+(source_file
+	(comment)
+	(string
+		(quoted_string)))
