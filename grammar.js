@@ -3,11 +3,11 @@ const const_start = /[A-Z]/,
   ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u;
 
 const bracket_pairs = [
-  ['(', ')', '\)'],
-  ['[', ']', '\]'],
-  ['{', '}', '\}'],
+  ['(', ')', '\\)'],
+  ['[', ']', '\\]'],
+  ['{', '}', '\\}'],
   ['<', '>', '>'],
-  ['|', '|', '\|']
+  ['|', '|', '\\|'],
 ];
 
 module.exports = grammar({
@@ -20,7 +20,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$.percent_string, $._binary_operator],
     [$.regex_literal, $._binary_operator],
-    [$.integer]
+    [$.integer],
   ],
 
   rules: {
@@ -37,31 +37,20 @@ module.exports = grammar({
         $._statement,
       ),
 
-    _statement: $ =>
-      choice(
-        $.class,
-        $.module,
-        $._expression
-      ),
+    _statement: $ => choice($.class, $.module, $._expression),
 
     class: $ =>
       seq(
-        "class",
+        'class',
         $.constant,
-        optional(seq("<", $.constant)),
+        optional(seq('<', $.constant)),
         $._terminator,
         optional($._statements),
-        'end'
+        'end',
       ),
 
     module: $ =>
-      seq(
-        "module",
-        $.constant,
-        $._terminator,
-        optional($._statements),
-        'end'
-      ),
+      seq('module', $.constant, $._terminator, optional($._statements), 'end'),
 
     _expression: $ =>
       choice(
@@ -98,11 +87,9 @@ module.exports = grammar({
             '%',
             optional('q'),
             start,
-            repeat(
-              new RegExp(`[^${escaped_end}]`),
-            ),
+            repeat(new RegExp(`[^${escaped_end}]`)),
             end,
-          )
+          ),
         ),
       ),
 
@@ -224,10 +211,7 @@ module.exports = grammar({
         optional(seq('=', field('default_value', $._expression))),
       ),
 
-    args: $ =>
-      seq(
-        $._expression
-      ),
+    args: $ => seq($._expression),
 
     block: $ => choice($.brace_block, $.do_end_block),
 
@@ -270,17 +254,13 @@ module.exports = grammar({
         token.immediate("'"),
       ),
 
-    symbol: $ =>
-      seq(':', choice($.identifier, $.string)),
+    symbol: $ => seq(':', choice($.identifier, $.string)),
 
-    instance_variable: $ =>
-      seq("@", $.identifier),
+    instance_variable: $ => seq('@', $.identifier),
 
-    class_variable: $ =>
-      seq("@@", $.identifier),
+    class_variable: $ => seq('@@', $.identifier),
 
-    self: $ =>
-      token("self"),
+    self: $ => token('self'),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
@@ -295,18 +275,40 @@ module.exports = grammar({
 
     _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
 
-    comment: $ =>
-      seq("#", /.*/),
+    comment: $ => seq('#', /.*/),
 
     // https://github.com/will/tree-sitter-crystal/blob/15597b307b18028b04d288561f9c29794621562b/grammar.js#L545
-    binary_operation: $ => prec.left(seq(
-      $._expression,
-      alias($._binary_operator, $.operator),
-      $._expression
-    )),
+    binary_operation: $ =>
+      prec.left(
+        seq(
+          $._expression,
+          alias($._binary_operator, $.operator),
+          $._expression,
+        ),
+      ),
 
-    _binary_operator: $ => choice(
-      "+", "-", "*", "/", "%", "&", "|", "^", "**", ">>", "<<", "==", "!=", "<", "<=", ">", ">=", "<=>", "===", "=~"
-    ),
+    _binary_operator: $ =>
+      choice(
+        '+',
+        '-',
+        '*',
+        '/',
+        '%',
+        '&',
+        '|',
+        '^',
+        '**',
+        '>>',
+        '<<',
+        '==',
+        '!=',
+        '<',
+        '<=',
+        '>',
+        '>=',
+        '<=>',
+        '===',
+        '=~',
+      ),
   },
 });

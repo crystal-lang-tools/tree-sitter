@@ -335,7 +335,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[^)]"
+                "value": "[^\\)]"
               }
             },
             {
@@ -371,7 +371,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[^]]"
+                "value": "[^\\]]"
               }
             },
             {
@@ -407,7 +407,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[^}]"
+                "value": "[^\\}]"
               }
             },
             {
@@ -479,7 +479,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[^|]"
+                "value": "[^\\|]"
               }
             },
             {
