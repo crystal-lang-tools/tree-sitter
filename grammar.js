@@ -23,6 +23,31 @@ module.exports = grammar({
     [$.integer],
   ],
 
+  // TODO: separate binary_operation into specific operator groups
+  precedences: $ => [
+    [
+      'binary_operation',
+      //   'index_operator',
+      //   'dot_accesss',
+      //   'unary_operator',
+      //   'exponent_operator',
+      //   'product_operator',
+      //   'sum_operator',
+      //   'shift_operator',
+      //   'binary_and',
+      //   'binary_or',
+      //   'equality_operator',
+      //   'comparison_operator',
+      //   'logic_and',
+      //   'logic_or',
+      //   'range_operator',
+      //   'ternary_operator',
+      //   'assign',
+      'splat_operator',
+      //   'comma',
+    ],
+  ],
+
   rules: {
     source_file: $ => seq(optional($._statements)),
 
@@ -70,9 +95,9 @@ module.exports = grammar({
                   repeat(seq(',', $.method_param)),
                   optional(','),
                 ),
-                optional($.splat_param),
-                optional($.double_splat_param),
-                optional($.block_param),
+                optional(seq($.splat_param, optional(','))),
+                optional(seq($.double_splat_param, optional(','))),
+                optional(seq($.block_param, optional(','))),
                 ')',
               ),
             ),
@@ -94,7 +119,7 @@ module.exports = grammar({
       seq(
         optional(choice('private', 'protected')),
         $._base_def,
-        repeat($._expression),
+        optional($._statements),
         'end',
       ),
 
@@ -266,7 +291,7 @@ module.exports = grammar({
     splat_param: $ =>
       seq(
         // repeat($.annotation),
-        '*',
+        prec('splat_operator', '*'),
         field('name', $.identifier),
         optional(seq(':', field('type', $.constant))),
       ),
@@ -274,7 +299,7 @@ module.exports = grammar({
     double_splat_param: $ =>
       seq(
         // repeat($.annotation),
-        '**',
+        prec('splat_operator', '**'),
         field('name', $.identifier),
         optional(seq(':', field('type', $.constant))),
       ),
@@ -352,6 +377,12 @@ module.exports = grammar({
     _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
 
     comment: $ => seq('#', /.*/),
+
+    splat: $ =>
+      prec('splat_operator', seq('*', token.immediate($._expression))),
+
+    double_splat: $ =>
+      prec('splat_operator', seq('**', token.immediate($._expression))),
 
     // https://github.com/will/tree-sitter-crystal/blob/15597b307b18028b04d288561f9c29794621562b/grammar.js#L545
     binary_operation: $ =>
