@@ -95,9 +95,9 @@ module.exports = grammar({
                   repeat(seq(',', $.method_param)),
                   optional(','),
                 ),
-                optional(seq($.splat_param, optional(','))),
-                optional(seq($.double_splat_param, optional(','))),
-                optional(seq($.block_param, optional(','))),
+                // optional(seq($.splat_param, optional(','))),
+                // optional(seq($.double_splat_param, optional(','))),
+                // optional(seq($.block_param, optional(','))),
                 ')',
               ),
             ),
@@ -288,29 +288,29 @@ module.exports = grammar({
         optional(seq('=', field('default_value', $._expression))),
       ),
 
-    splat_param: $ =>
-      seq(
-        // repeat($.annotation),
-        prec('splat_operator', '*'),
-        field('name', $.identifier),
-        optional(seq(':', field('type', $.constant))),
-      ),
+    // splat_param: $ =>
+    //   seq(
+    //     // repeat($.annotation),
+    //     prec('splat_operator', '*'),
+    //     field('name', $.identifier),
+    //     optional(seq(':', field('type', $.constant))),
+    //   ),
 
-    double_splat_param: $ =>
-      seq(
-        // repeat($.annotation),
-        prec('splat_operator', '**'),
-        field('name', $.identifier),
-        optional(seq(':', field('type', $.constant))),
-      ),
+    // double_splat_param: $ =>
+    //   seq(
+    //     // repeat($.annotation),
+    //     prec('splat_operator', '**'),
+    //     field('name', $.identifier),
+    //     optional(seq(':', field('type', $.constant))),
+    //   ),
 
-    block_param: $ =>
-      seq(
-        // repeat($.annotation),
-        '&',
-        optional(field('name', $.identifier)),
-        optional(seq(':', field('type', $.constant))),
-      ),
+    // block_param: $ =>
+    //   seq(
+    //     // repeat($.annotation),
+    //     '&',
+    //     optional(field('name', $.identifier)),
+    //     optional(seq(':', field('type', $.constant))),
+    //   ),
 
     args: $ => seq($._expression),
 
@@ -378,11 +378,11 @@ module.exports = grammar({
 
     comment: $ => seq('#', /.*/),
 
-    splat: $ =>
-      prec('splat_operator', seq('*', token.immediate($._expression))),
+    // splat: $ =>
+    //   prec('splat_operator', seq('*', token.immediate($._expression))),
 
-    double_splat: $ =>
-      prec('splat_operator', seq('**', token.immediate($._expression))),
+    // double_splat: $ =>
+    //   prec('splat_operator', seq('**', token.immediate($._expression))),
 
     // https://github.com/will/tree-sitter-crystal/blob/15597b307b18028b04d288561f9c29794621562b/grammar.js#L545
     binary_operation: $ =>
