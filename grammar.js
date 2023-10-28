@@ -37,7 +37,7 @@ module.exports = grammar({
         $._statement,
       ),
 
-    _statement: $ => choice($.class, $.module, $._expression),
+    _statement: $ => choice($.class, $.module, $.def, $._expression),
 
     class: $ =>
       seq(
@@ -51,6 +51,45 @@ module.exports = grammar({
 
     module: $ =>
       seq('module', $.constant, $._terminator, optional($._statements), 'end'),
+
+    def: $ => choice($.abstract_def, $.method_def),
+
+    _base_def: $ =>
+      prec.right(
+        seq(
+          'def',
+          optional(field('class', seq(choice($.constant, $.self), '.'))),
+          field('name', choice($.identifier, $._binary_operator)),
+          optional(
+            field(
+              'params',
+              seq(
+                '(',
+                seq($.param, repeat(seq(',', $.param)), optional(',')),
+                ')',
+              ),
+            ),
+          ),
+          optional(field('returns', seq(':', $.constant))),
+          optional(
+            field(
+              'forall',
+              seq('forall', $.constant, repeat(seq(',', $.constant))),
+            ),
+          ),
+        ),
+      ),
+
+    abstract_def: $ =>
+      seq(optional(choice('private', 'protected')), 'abstract', $._base_def),
+
+    method_def: $ =>
+      seq(
+        optional(choice('private', 'protected')),
+        $._base_def,
+        optional($._statements),
+        'end',
+      ),
 
     _expression: $ =>
       choice(
