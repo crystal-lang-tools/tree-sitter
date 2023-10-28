@@ -70,6 +70,9 @@ module.exports = grammar({
                   repeat(seq(',', $.method_param)),
                   optional(','),
                 ),
+                optional($.splat_param),
+                optional($.double_splat_param),
+                optional($.block_param),
                 ')',
               ),
             ),
@@ -91,7 +94,7 @@ module.exports = grammar({
       seq(
         optional(choice('private', 'protected')),
         $._base_def,
-        optional($._statements),
+        repeat($._expression),
         'end',
       ),
 
