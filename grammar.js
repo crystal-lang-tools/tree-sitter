@@ -65,7 +65,11 @@ module.exports = grammar({
               'params',
               seq(
                 '(',
-                seq($.param, repeat(seq(',', $.param)), optional(',')),
+                seq(
+                  $.method_param,
+                  repeat(seq(',', $.method_param)),
+                  optional(','),
+                ),
                 ')',
               ),
             ),
@@ -231,7 +235,7 @@ module.exports = grammar({
             '(',
             field(
               'params',
-              seq($.param, repeat(seq(',', $.param))),
+              seq($.proc_param, repeat(seq(',', $.proc_param))),
               optional(','),
             ),
             ')',
@@ -241,13 +245,43 @@ module.exports = grammar({
         $.block,
       ),
 
-    param: $ =>
+    proc_param: $ =>
+      seq(
+        field('name', $.identifier), // support class/instance vars
+        optional(seq(':', field('type', $.constant))),
+      ),
+
+    method_param: $ =>
       seq(
         // repeat($.annotation),
         optional(field('external_name', $.identifier)),
         field('name', $.identifier), // support class/instance vars
         optional(seq(':', field('type', $.constant))),
         optional(seq('=', field('default_value', $._expression))),
+      ),
+
+    splat_param: $ =>
+      seq(
+        // repeat($.annotation),
+        '*',
+        field('name', $.identifier),
+        optional(seq(':', field('type', $.constant))),
+      ),
+
+    double_splat_param: $ =>
+      seq(
+        // repeat($.annotation),
+        '**',
+        field('name', $.identifier),
+        optional(seq(':', field('type', $.constant))),
+      ),
+
+    block_param: $ =>
+      seq(
+        // repeat($.annotation),
+        '&',
+        optional(field('name', $.identifier)),
+        optional(seq(':', field('type', $.constant))),
       ),
 
     args: $ => seq($._expression),

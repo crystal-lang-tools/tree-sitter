@@ -91,9 +91,9 @@ protected abstract def baz(type : T) : U forall T, U
 	(def
 		(method_def
 			(identifier)
-			(param
+			(method_param
 				(identifier))
-			(param
+			(method_param
 				(identifier))
 			(binary_operation
 				(identifier)
@@ -102,7 +102,7 @@ protected abstract def baz(type : T) : U forall T, U
 	(def
 		(method_def
 			(identifier)
-			(param
+			(method_param
 				(identifier)
 				(constant))
 			(constant)
@@ -114,10 +114,10 @@ protected abstract def baz(type : T) : U forall T, U
 	(def
 		(method_def
 			(identifier)
-			(param
+			(method_param
 				(identifier)
 				(constant))
-			(param
+			(method_param
 				(identifier)
 				(constant))
 			(constant)
@@ -132,14 +132,14 @@ protected abstract def baz(type : T) : U forall T, U
 	(def
 		(abstract_def
 			(identifier)
-			(param
+			(method_param
 				(identifier)
 				(constant))
 			(constant)))
 	(def
 		(abstract_def
 			(identifier)
-			(param
+			(method_param
 				(identifier)
 				(constant))
 			(constant)
