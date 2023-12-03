@@ -37,6 +37,3 @@
 (identifier) @variable
 
 (constant) @constant
-
-(param) @variable.parameter
-

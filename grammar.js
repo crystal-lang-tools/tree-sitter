@@ -1,12 +1,13 @@
 const const_start = /[A-Z]/,
   ident_start = /[a-z_\u{00a0}-\u{10ffff}]/u,
   ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u,
+
   bracket_pairs = [
-    ['(', ')', '\)'],
-    ['[', ']', '\]'],
-    ['{', '}', '\}'],
+    ['(', ')', '\\)'],
+    ['[', ']', '\\]'],
+    ['{', '}', '\\}'],
     ['<', '>', '>'],
-    ['|', '|', '\|']
+    ['|', '|', '\\|'],
   ];
 
 module.exports = grammar({
@@ -15,6 +16,37 @@ module.exports = grammar({
   extras: $ => [/[\s\r\n]+/],
 
   word: $ => $.identifier,
+
+  conflicts: $ => [
+    [$.percent_string, $._binary_operator],
+    [$.regex_literal, $._binary_operator],
+    [$.integer],
+  ],
+
+  // TODO: separate binary_operation into specific operator groups
+  precedences: $ => [
+    [
+      'binary_operation',
+      //   'index_operator',
+      //   'dot_accesss',
+      //   'unary_operator',
+      //   'exponent_operator',
+      //   'product_operator',
+      //   'sum_operator',
+      //   'shift_operator',
+      //   'binary_and',
+      //   'binary_or',
+      //   'equality_operator',
+      //   'comparison_operator',
+      //   'logic_and',
+      //   'logic_or',
+      //   'range_operator',
+      //   'ternary_operator',
+      //   'assign',
+      'splat_operator',
+      //   'comma',
+    ],
+  ],
 
   rules: {
     source_file: $ => seq(optional($._statements)),
@@ -30,8 +62,70 @@ module.exports = grammar({
         $._statement,
       ),
 
-    _statement: $ =>
+    _statement: $ => choice($.class, $.module, $.def, $._expression),
+
+    class: $ =>
+      seq(
+        'class',
+        $.constant,
+        optional(seq('<', $.constant)),
+        $._terminator,
+        optional($._statements),
+        'end',
+      ),
+
+    module: $ =>
+      seq('module', $.constant, $._terminator, optional($._statements), 'end'),
+
+    def: $ => choice($.abstract_def, $.method_def),
+
+    _base_def: $ =>
+      prec.right(
+        seq(
+          'def',
+          optional(field('class', seq(choice($.constant, $.self), '.'))),
+          field('name', choice($.identifier, $._binary_operator)),
+          optional(
+            field(
+              'params',
+              seq(
+                '(',
+                seq(
+                  $.method_param,
+                  repeat(seq(',', $.method_param)),
+                  optional(','),
+                ),
+                // optional(seq($.splat_param, optional(','))),
+                // optional(seq($.double_splat_param, optional(','))),
+                // optional(seq($.block_param, optional(','))),
+                ')',
+              ),
+            ),
+          ),
+          optional(field('returns', seq(':', $.constant))),
+          optional(
+            field(
+              'forall',
+              seq('forall', $.constant, repeat(seq(',', $.constant))),
+            ),
+          ),
+        ),
+      ),
+
+    abstract_def: $ =>
+      seq(optional(choice('private', 'protected')), 'abstract', $._base_def),
+
+    method_def: $ =>
+      seq(
+        optional(choice('private', 'protected')),
+        $._base_def,
+        optional($._statements),
+        'end',
+      ),
+
+    _expression: $ =>
       choice(
+        $.binary_operation,
         $.string,
         $.regex_literal,
         $.nil,
@@ -64,11 +158,9 @@ module.exports = grammar({
             '%',
             optional('q'),
             start,
-            repeat(
-              new RegExp(`[^${escaped_end}]`),
-            ),
+            repeat(new RegExp(`[^${escaped_end}]`)),
             end,
-          )
+          ),
         ),
       ),
 
@@ -127,8 +219,8 @@ module.exports = grammar({
         '[',
         optional(
           choice(
-            $._statement,
-            seq($._statement, repeat(seq(',', $._statement))),
+            $._expression,
+            seq($._expression, repeat(seq(',', $._expression))),
           ),
         ),
         ']',
@@ -139,10 +231,10 @@ module.exports = grammar({
       choice(
         seq(
           '{',
-          $._statement,
+          $._expression,
           '=>',
-          $._statement,
-          repeat(seq(',', $._statement, '=>', $._statement)),
+          $._expression,
+          repeat(seq(',', $._expression, '=>', $._expression)),
           '}',
           optional(
             seq(
@@ -171,7 +263,7 @@ module.exports = grammar({
             '(',
             field(
               'params',
-              seq($.param, repeat(seq(',', $.param))),
+              seq($.proc_param, repeat(seq(',', $.proc_param))),
               optional(','),
             ),
             ')',
@@ -181,14 +273,46 @@ module.exports = grammar({
         $.block,
       ),
 
-    param: $ =>
+    proc_param: $ =>
+      seq(
+        field('name', $.identifier), // support class/instance vars
+        optional(seq(':', field('type', $.constant))),
+      ),
+
+    method_param: $ =>
       seq(
         // repeat($.annotation),
         optional(field('external_name', $.identifier)),
         field('name', $.identifier), // support class/instance vars
         optional(seq(':', field('type', $.constant))),
-        optional(seq('=', field('default_value', $._statement))),
+        optional(seq('=', field('default_value', $._expression))),
       ),
+
+    // splat_param: $ =>
+    //   seq(
+    //     // repeat($.annotation),
+    //     prec('splat_operator', '*'),
+    //     field('name', $.identifier),
+    //     optional(seq(':', field('type', $.constant))),
+    //   ),
+
+    // double_splat_param: $ =>
+    //   seq(
+    //     // repeat($.annotation),
+    //     prec('splat_operator', '**'),
+    //     field('name', $.identifier),
+    //     optional(seq(':', field('type', $.constant))),
+    //   ),
+
+    // block_param: $ =>
+    //   seq(
+    //     // repeat($.annotation),
+    //     '&',
+    //     optional(field('name', $.identifier)),
+    //     optional(seq(':', field('type', $.constant))),
+    //   ),
+
+    args: $ => seq($._expression),
 
     block: $ => choice($.brace_block, $.do_end_block),
 
@@ -231,17 +355,13 @@ module.exports = grammar({
         token.immediate("'"),
       ),
 
-    symbol: $ =>
-      seq(':', choice($.identifier, $.string)),
+    symbol: $ => seq(':', choice($.identifier, $.string)),
 
-    instance_variable: $ =>
-      seq("@", $.identifier),
+    instance_variable: $ => seq('@', $.identifier),
 
-    class_variable: $ =>
-      seq("@@", $.identifier),
+    class_variable: $ => seq('@@', $.identifier),
 
-    self: $ =>
-      token("self"),
+    self: $ => token('self'),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
@@ -256,7 +376,46 @@ module.exports = grammar({
 
     _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
 
-    comment: $ =>
-      seq("#", /.*/),
+    comment: $ => seq('#', /.*/),
+
+    // splat: $ =>
+    //   prec('splat_operator', seq('*', token.immediate($._expression))),
+
+    // double_splat: $ =>
+    //   prec('splat_operator', seq('**', token.immediate($._expression))),
+
+    // https://github.com/will/tree-sitter-crystal/blob/15597b307b18028b04d288561f9c29794621562b/grammar.js#L545
+    binary_operation: $ =>
+      prec.left(
+        seq(
+          $._expression,
+          alias($._binary_operator, $.operator),
+          $._expression,
+        ),
+      ),
+
+    _binary_operator: $ =>
+      choice(
+        '+',
+        '-',
+        '*',
+        '/',
+        '%',
+        '&',
+        '|',
+        '^',
+        '**',
+        '>>',
+        '<<',
+        '==',
+        '!=',
+        '<',
+        '<=',
+        '>',
+        '>=',
+        '<=>',
+        '===',
+        '=~',
+      ),
   },
 });

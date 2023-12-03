@@ -205,20 +205,20 @@ end
 		(block (do_end_block
 			(string (quoted_string)))))
 	(proc
-		(param (identifier))
+		(proc_param (identifier))
 		(block (brace_block
 			(identifier))))
 	(proc
-		(param
+		(proc_param
 			(identifier))
-		(param
+		(proc_param
 			(identifier))
 		(block (brace_block)))
 	(proc
-		(param
+		(proc_param
 			(identifier)
 			(constant))
-		(param
+		(proc_param
 			(identifier)
 			(constant))
 		(block (do_end_block
