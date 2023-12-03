@@ -1,14 +1,14 @@
 const const_start = /[A-Z]/,
   ident_start = /[a-z_\u{00a0}-\u{10ffff}]/u,
-  ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u;
+  ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u,
 
-const bracket_pairs = [
-  ['(', ')', '\\)'],
-  ['[', ']', '\\]'],
-  ['{', '}', '\\}'],
-  ['<', '>', '>'],
-  ['|', '|', '\\|'],
-];
+  bracket_pairs = [
+    ['(', ')', '\\)'],
+    ['[', ']', '\\]'],
+    ['{', '}', '\\}'],
+    ['<', '>', '>'],
+    ['|', '|', '\\|'],
+  ];
 
 module.exports = grammar({
   name: 'crystal',
