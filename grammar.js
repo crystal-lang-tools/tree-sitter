@@ -49,7 +49,11 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => seq(optional($._statements)),
+    source_file: $ =>
+      choice(
+        repeat($.require),
+        seq(optional($._statements)),
+      ),
 
     _terminator: $ => choice(/\r?\n/, ';'),
 
@@ -165,6 +169,12 @@ module.exports = grammar({
       ),
 
     regex_literal: $ => seq('/', repeat(/[^\/]|\\\//), '/'),
+
+    require: $ =>
+      seq(
+        'require',
+        $.quoted_string,
+      ),
 
     integer: $ =>
       seq(

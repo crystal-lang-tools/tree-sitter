@@ -1433,6 +1433,21 @@
     "fields": {}
   },
   {
+    "type": "require",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quoted_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -1510,6 +1525,10 @@
         },
         {
           "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "require",
           "named": true
         },
         {
@@ -1855,6 +1874,10 @@
   },
   {
     "type": "r",
+    "named": false
+  },
+  {
+    "type": "require",
     "named": false
   },
   {
