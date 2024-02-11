@@ -92,6 +92,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "require"
+        },
+        {
+          "type": "SYMBOL",
           "name": "class"
         },
         {
@@ -796,6 +800,19 @@
         {
           "type": "STRING",
           "value": "/"
+        }
+      ]
+    },
+    "require": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "require"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quoted_string"
         }
       ]
     },

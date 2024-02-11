@@ -145,3 +145,31 @@ protected abstract def baz(type : T) : U forall T, U
 			(constant)
 			(constant)
 			(constant))))
+
+=================
+Require statement
+=================
+
+require "example"
+
+require "json"
+require "yaml"
+
+1 + 2
+require "big"
+
+---
+
+(source_file
+  (require
+    (quoted_string))
+  (require
+    (quoted_string))
+  (require
+    (quoted_string))
+  (binary_operation
+    (integer)
+    (operator)
+    (integer))
+  (require
+    (quoted_string)))
