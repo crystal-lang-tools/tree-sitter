@@ -465,6 +465,10 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
@@ -566,6 +570,10 @@
         },
         {
           "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "require",
           "named": true
         },
         {
@@ -713,6 +721,10 @@
         },
         {
           "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "require",
           "named": true
         },
         {
@@ -1111,6 +1123,10 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
@@ -1325,6 +1341,10 @@
         },
         {
           "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "require",
           "named": true
         },
         {

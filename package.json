@@ -6,6 +6,7 @@
 	"scripts": {
 		"format": "prettier --write ./grammar.js",
 		"lint": "eslint grammar.js",
+    "generate": "tree-sitter generate",
 		"test": "tree-sitter test"
 	},
 	"keywords": [],
