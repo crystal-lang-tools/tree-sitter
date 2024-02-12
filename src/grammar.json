@@ -100,6 +100,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "struct"
+        },
+        {
+          "type": "SYMBOL",
           "name": "module"
         },
         {
@@ -128,6 +132,18 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "private"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
               "name": "abstract"
             },
             {
@@ -147,17 +163,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "<"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "constant"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "inherit"
             },
             {
               "type": "BLANK"
@@ -186,9 +193,103 @@
         }
       ]
     },
+    "struct": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "private"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "abstract"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "struct"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constant"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "inherit"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_terminator"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_statements"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "end"
+        }
+      ]
+    },
+    "inherit": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constant"
+        }
+      ]
+    },
     "module": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "private"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "STRING",
           "value": "module"
@@ -484,12 +585,7 @@
           ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "abstract"
-          },
-          "named": false,
+          "type": "STRING",
           "value": "abstract"
         },
         {
@@ -622,6 +718,22 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line_pseudo_constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "endline_pseudo_constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "file_pseudo_constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dir_pseudo_constant"
         }
       ]
     },
@@ -1841,32 +1953,20 @@
       ]
     },
     "self": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "self"
-      }
+      "type": "STRING",
+      "value": "self"
     },
     "abstract": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "abstract"
-      }
+      "type": "STRING",
+      "value": "abstract"
     },
     "protected": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "protected"
-      }
+      "type": "STRING",
+      "value": "protected"
     },
     "private": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "private"
-      }
+      "type": "STRING",
+      "value": "private"
     },
     "identifier": {
       "type": "TOKEN",
@@ -1946,6 +2046,22 @@
           }
         ]
       }
+    },
+    "line_pseudo_constant": {
+      "type": "STRING",
+      "value": "__LINE__"
+    },
+    "endline_pseudo_constant": {
+      "type": "STRING",
+      "value": "__END_LINE__"
+    },
+    "file_pseudo_constant": {
+      "type": "STRING",
+      "value": "__FILE__"
+    },
+    "dir_pseudo_constant": {
+      "type": "STRING",
+      "value": "__DIR__"
     },
     "comment": {
       "type": "SEQ",

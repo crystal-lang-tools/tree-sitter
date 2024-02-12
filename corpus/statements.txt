@@ -2,22 +2,39 @@
 Class definition
 ================
 
-class MyClass < MySuperClass; end
+class MyClass; end
+
+class MyClass
+end
+
+class MyClass < MySuperClass
+end
 
 class MyClass::MyOtherClass
-    "string"
-    "string2"
+  "string"
+  "string2"
 end
 
 abstract class MyClass
 end
 
+private class MyClass
+end
+
+private abstract class MyClass
+end
+
 ---
 
 (source_file
+  (class
+    (constant))
+  (class
+    (constant))
 	(class
 		(constant)
-		(constant))
+    (inherit
+      (constant)))
 	(class
 		(constant)
 		(string
@@ -25,6 +42,64 @@ end
 		(string
 			(quoted_string)))
   (class
+    (abstract)
+    (constant))
+  (class
+    (private)
+    (constant))
+  (class
+    (private)
+    (abstract)
+    (constant)))
+
+=================
+Struct definition
+=================
+
+struct MyStruct; end
+
+struct MyStruct
+end
+
+struct MyStruct < AnotherStruct
+end
+
+struct MyStruct::MyOtherStruct
+  "string"
+end
+
+abstract struct MyStruct
+end
+
+private struct MyStruct
+end
+
+private abstract struct MyStruct
+end
+
+---
+
+(source_file
+  (struct
+    (constant))
+  (struct
+    (constant))
+  (struct
+    (constant)
+    (inherit
+      (constant)))
+  (struct
+    (constant)
+    (string
+      (quoted_string)))
+  (struct
+    (abstract)
+    (constant))
+  (struct
+    (private)
+    (constant))
+  (struct
+    (private)
     (abstract)
     (constant)))
 
@@ -34,11 +109,17 @@ Module definition
 
 module MyMod; end
 
+module MyMod
+end
+
 module MyMod::MyOtherMod
 	1
 	2
 	3
 	4
+end
+
+private module MyMod
 end
 
 ---
@@ -47,11 +128,16 @@ end
 	(module
 		(constant))
 	(module
-		(constant)
+    (constant))
+  (module
+    (constant)
 		(integer)
 		(integer)
 		(integer)
-		(integer)))
+    (integer))
+  (module
+    (private)
+    (constant)))
 
 ==================
 Method definitions
