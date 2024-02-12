@@ -61,10 +61,11 @@ module.exports = grammar({
         $._statement,
       ),
 
-    _statement: $ => choice($.require, $.class, $.module, $.def, $._expression),
+    _statement: $ => choice($.require, $.class, $.module, $.include, $.extend, $.def, $._expression),
 
     class: $ =>
       seq(
+        optional($.abstract),
         'class',
         $.constant,
         optional(seq('<', $.constant)),
@@ -75,6 +76,10 @@ module.exports = grammar({
 
     module: $ =>
       seq('module', $.constant, $._terminator, optional($._statements), 'end'),
+
+    include: $ => seq('include', $.constant),
+
+    extend: $ => seq('extend', choice($.constant, $.self)),
 
     def: $ => choice($.abstract_def, $.method_def),
 
@@ -112,11 +117,25 @@ module.exports = grammar({
       ),
 
     abstract_def: $ =>
-      seq(optional(choice('private', 'protected')), 'abstract', $._base_def),
+      seq(
+        optional(
+          choice(
+            $.private,
+            $.protected
+          )
+        ),
+        alias($.abstract, 'abstract'),
+        $._base_def
+      ),
 
     method_def: $ =>
       seq(
-        optional(choice('private', 'protected')),
+        optional(
+          choice(
+            $.private,
+            $.protected
+          )
+        ),
         $._base_def,
         optional($._statements),
         'end',
@@ -363,6 +382,12 @@ module.exports = grammar({
     class_variable: $ => seq('@@', $.identifier),
 
     self: $ => token('self'),
+
+    abstract: $ => token('abstract'),
+
+    protected: $ => token('protected'),
+
+    private: $ => token('private'),
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
