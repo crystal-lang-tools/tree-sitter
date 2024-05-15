@@ -1975,13 +1975,15 @@
         "members": [
           {
             "type": "PATTERN",
-            "value": "[a-z_\\u{00a0}-\\u{10ffff}]"
+            "value": "[a-z_\\u{00a0}-\\u{10ffff}]",
+            "flags": "u"
           },
           {
             "type": "REPEAT",
             "content": {
               "type": "PATTERN",
-              "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]"
+              "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+              "flags": "u"
             }
           }
         ]
@@ -2041,7 +2043,8 @@
             "type": "REPEAT",
             "content": {
               "type": "PATTERN",
-              "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]"
+              "value": "[0-9A-Za-z_\\u{00a0}-\\u{10ffff}]",
+              "flags": "u"
             }
           }
         ]
@@ -2223,4 +2226,3 @@
   "inline": [],
   "supertypes": []
 }
-
