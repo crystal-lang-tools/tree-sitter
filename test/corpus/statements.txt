@@ -1,0 +1,327 @@
+================
+Class definition
+================
+
+class MyClass; end
+
+class MyClass
+end
+
+class MyClass < MySuperClass
+end
+
+class MyClass::MyOtherClass
+  "string"
+  "string2"
+end
+
+abstract class MyClass
+end
+
+private class MyClass
+end
+
+private abstract class MyClass
+end
+
+---
+
+(source_file
+  (class
+    (constant))
+  (class
+    (constant))
+	(class
+		(constant)
+    (inherit
+      (constant)))
+	(class
+		(constant)
+		(string
+			(quoted_string))
+		(string
+			(quoted_string)))
+  (class
+    (abstract)
+    (constant))
+  (class
+    (private)
+    (constant))
+  (class
+    (private)
+    (abstract)
+    (constant)))
+
+=================
+Struct definition
+=================
+
+struct MyStruct; end
+
+struct MyStruct
+end
+
+struct MyStruct < AnotherStruct
+end
+
+struct MyStruct::MyOtherStruct
+  "string"
+end
+
+abstract struct MyStruct
+end
+
+private struct MyStruct
+end
+
+private abstract struct MyStruct
+end
+
+---
+
+(source_file
+  (struct
+    (constant))
+  (struct
+    (constant))
+  (struct
+    (constant)
+    (inherit
+      (constant)))
+  (struct
+    (constant)
+    (string
+      (quoted_string)))
+  (struct
+    (abstract)
+    (constant))
+  (struct
+    (private)
+    (constant))
+  (struct
+    (private)
+    (abstract)
+    (constant)))
+
+=================
+Module definition
+=================
+
+module MyMod; end
+
+module MyMod
+end
+
+module MyMod::MyOtherMod
+	1
+	2
+	3
+	4
+end
+
+private module MyMod
+end
+
+---
+
+(source_file
+	(module
+		(constant))
+	(module
+    (constant))
+  (module
+    (constant)
+		(integer)
+		(integer)
+		(integer)
+    (integer))
+  (module
+    (private)
+    (constant)))
+
+==================
+Method definitions
+==================
+
+def empty
+end
+
+def say : Nil
+	"hello world"
+end
+
+def add(a, b)
+	a + b
+end
+
+private def greet(name : String) : Nil
+	"Greetings, " + name
+end
+
+protected def add(a : T, b : T) : T forall T
+	a + b
+end
+
+abstract def foo
+
+private abstract def bar(type : T) forall T
+
+protected abstract def baz(type : T) : U forall T, U
+
+---
+
+(source_file
+	(def
+		(method_def
+			(identifier)))
+	(def
+		(method_def
+			(identifier)
+			(constant)
+			(string
+				(quoted_string))))
+	(def
+		(method_def
+			(identifier)
+			(method_param
+				(identifier))
+			(method_param
+				(identifier))
+			(binary_operation
+				(identifier)
+				(operator)
+				(identifier))))
+	(def
+		(method_def
+      (private)
+			(identifier)
+			(method_param
+				(identifier)
+				(constant))
+			(constant)
+			(binary_operation
+				(string
+					(quoted_string))
+				(operator)
+				(identifier))))
+	(def
+		(method_def
+      (protected)
+			(identifier)
+			(method_param
+				(identifier)
+				(constant))
+			(method_param
+				(identifier)
+				(constant))
+			(constant)
+			(constant)
+			(binary_operation
+				(identifier)
+				(operator)
+				(identifier))))
+	(def
+		(abstract_def
+			(identifier)))
+	(def
+		(abstract_def
+      (private)
+			(identifier)
+			(method_param
+				(identifier)
+				(constant))
+			(constant)))
+	(def
+		(abstract_def
+      (protected)
+			(identifier)
+			(method_param
+				(identifier)
+				(constant))
+			(constant)
+			(constant)
+			(constant))))
+
+=================
+Require statement
+=================
+
+require "example"
+
+require "json"
+require "yaml"
+
+1 + 2
+require "big"
+
+---
+
+(source_file
+  (require
+    (quoted_string))
+  (require
+    (quoted_string))
+  (require
+    (quoted_string))
+  (binary_operation
+    (integer)
+    (operator)
+    (integer))
+  (require
+    (quoted_string)))
+
+=================
+Include statement
+=================
+
+include ABC
+
+module A
+  include ABC
+end
+
+module A::B
+  include ABC
+end
+
+---
+
+(source_file
+  (include
+    (constant))
+  (module
+    (constant)
+    (include
+      (constant)))
+  (module
+    (constant)
+    (include
+      (constant))))
+
+================
+Extend statement
+================
+
+extend Abc
+
+module A
+  extend Abc
+end
+
+module A::B
+  extend self
+end
+
+---
+
+(source_file
+  (extend
+    (constant))
+  (module
+    (constant)
+    (extend
+      (constant)))
+  (module
+    (constant)
+    (extend
+      (self))))

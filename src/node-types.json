@@ -1,5 +1,10 @@
 [
   {
+    "type": "abstract",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "abstract_def",
     "named": true,
     "fields": {
@@ -165,6 +170,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "private",
+          "named": true
+        },
+        {
+          "type": "protected",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -200,7 +219,19 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -221,6 +252,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -287,7 +322,19 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -308,6 +355,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -425,7 +476,23 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -441,11 +508,19 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
           "type": "instance_variable",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -465,11 +540,19 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -496,6 +579,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "abstract",
+          "named": true
+        },
         {
           "type": "array",
           "named": true
@@ -529,7 +616,23 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -545,11 +648,23 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
+          "type": "inherit",
+          "named": true
+        },
+        {
           "type": "instance_variable",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -561,6 +676,10 @@
           "named": true
         },
         {
+          "type": "private",
+          "named": true
+        },
+        {
           "type": "proc",
           "named": true
         },
@@ -569,11 +688,19 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -676,7 +803,23 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -692,11 +835,19 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
           "type": "instance_variable",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -716,6 +867,10 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
@@ -724,11 +879,34 @@
           "named": true
         },
         {
+          "type": "struct",
+          "named": true
+        },
+        {
           "type": "symbol",
           "named": true
         },
         {
           "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "extend",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "self",
           "named": true
         }
       ]
@@ -793,7 +971,19 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -814,6 +1004,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -842,6 +1036,36 @@
         },
         {
           "type": "true",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inherit",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
           "named": true
         }
       ]
@@ -1071,7 +1295,23 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -1087,11 +1327,19 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
           "type": "instance_variable",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -1103,11 +1351,23 @@
           "named": true
         },
         {
+          "type": "private",
+          "named": true
+        },
+        {
           "type": "proc",
           "named": true
         },
         {
+          "type": "protected",
+          "named": true
+        },
+        {
           "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "require",
           "named": true
         },
         {
@@ -1116,6 +1376,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -1162,7 +1426,19 @@
             "named": true
           },
           {
+            "type": "dir_pseudo_constant",
+            "named": true
+          },
+          {
+            "type": "endline_pseudo_constant",
+            "named": true
+          },
+          {
             "type": "false",
+            "named": true
+          },
+          {
+            "type": "file_pseudo_constant",
             "named": true
           },
           {
@@ -1183,6 +1459,10 @@
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "line_pseudo_constant",
             "named": true
           },
           {
@@ -1288,7 +1568,23 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -1304,11 +1600,19 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
           "type": "instance_variable",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -1320,6 +1624,10 @@
           "named": true
         },
         {
+          "type": "private",
+          "named": true
+        },
+        {
           "type": "proc",
           "named": true
         },
@@ -1328,11 +1636,19 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -1433,6 +1749,21 @@
     "fields": {}
   },
   {
+    "type": "require",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quoted_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -1473,7 +1804,23 @@
           "named": true
         },
         {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
           "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
           "named": true
         },
         {
@@ -1489,11 +1836,19 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
           "type": "instance_variable",
           "named": true
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
           "named": true
         },
         {
@@ -1513,11 +1868,19 @@
           "named": true
         },
         {
+          "type": "require",
+          "named": true
+        },
+        {
           "type": "self",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -1545,6 +1908,149 @@
         },
         {
           "type": "quoted_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "abstract",
+          "named": true
+        },
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "binary_operation",
+          "named": true
+        },
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "class_variable",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "dir_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "endline_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "extend",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "file_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "hash",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        },
+        {
+          "type": "inherit",
+          "named": true
+        },
+        {
+          "type": "instance_variable",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "line_pseudo_constant",
+          "named": true
+        },
+        {
+          "type": "module",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "private",
+          "named": true
+        },
+        {
+          "type": "proc",
+          "named": true
+        },
+        {
+          "type": "regex_literal",
+          "named": true
+        },
+        {
+          "type": "require",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "true",
           "named": true
         }
       ]
@@ -1770,6 +2276,10 @@
     "named": false
   },
   {
+    "type": "dir_pseudo_constant",
+    "named": true
+  },
+  {
     "type": "do",
     "named": false
   },
@@ -1779,6 +2289,14 @@
   },
   {
     "type": "end",
+    "named": false
+  },
+  {
+    "type": "endline_pseudo_constant",
+    "named": true
+  },
+  {
+    "type": "extend",
     "named": false
   },
   {
@@ -1795,6 +2313,10 @@
   },
   {
     "type": "false",
+    "named": true
+  },
+  {
+    "type": "file_pseudo_constant",
     "named": true
   },
   {
@@ -1826,6 +2348,14 @@
     "named": true
   },
   {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "line_pseudo_constant",
+    "named": true
+  },
+  {
     "type": "module",
     "named": false
   },
@@ -1843,11 +2373,11 @@
   },
   {
     "type": "private",
-    "named": false
+    "named": true
   },
   {
     "type": "protected",
-    "named": false
+    "named": true
   },
   {
     "type": "q",
@@ -1858,8 +2388,16 @@
     "named": false
   },
   {
+    "type": "require",
+    "named": false
+  },
+  {
     "type": "self",
     "named": true
+  },
+  {
+    "type": "struct",
+    "named": false
   },
   {
     "type": "t",

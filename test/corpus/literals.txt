@@ -317,3 +317,23 @@ Comments
 	(comment)
 	(string
 		(quoted_string)))
+
+================
+Pseudo constants
+================
+
+__LINE__
+
+__END_LINE__
+
+__FILE__
+
+__DIR__
+
+---
+
+(source_file
+  (line_pseudo_constant)
+  (endline_pseudo_constant)
+  (file_pseudo_constant)
+  (dir_pseudo_constant))

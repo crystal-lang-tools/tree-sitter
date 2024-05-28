@@ -1,7 +1,6 @@
 const const_start = /[A-Z]/,
   ident_start = /[a-z_\u{00a0}-\u{10ffff}]/u,
   ident_part = /[0-9A-Za-z_\u{00a0}-\u{10ffff}]/u,
-
   bracket_pairs = [
     ['(', ')', '\\)'],
     ['[', ']', '\\]'],
@@ -62,20 +61,57 @@ module.exports = grammar({
         $._statement,
       ),
 
-    _statement: $ => choice($.class, $.module, $.def, $._expression),
+    _statement: $ =>
+      choice(
+        $.require,
+        $.class,
+        $.struct,
+        $.module,
+        $.include,
+        $.extend,
+        $.def,
+        $._expression,
+      ),
 
     class: $ =>
       seq(
+        optional($.private),
+        optional($.abstract),
         'class',
         $.constant,
-        optional(seq('<', $.constant)),
+        optional($.inherit),
         $._terminator,
         optional($._statements),
         'end',
       ),
 
+    struct: $ =>
+      seq(
+        optional($.private),
+        optional($.abstract),
+        'struct',
+        $.constant,
+        optional($.inherit),
+        $._terminator,
+        optional($._statements),
+        'end',
+      ),
+
+    inherit: $ => seq('<', $.constant),
+
     module: $ =>
-      seq('module', $.constant, $._terminator, optional($._statements), 'end'),
+      seq(
+        optional($.private),
+        'module',
+        $.constant,
+        $._terminator,
+        optional($._statements),
+        'end',
+      ),
+
+    include: $ => seq('include', $.constant),
+
+    extend: $ => seq('extend', choice($.constant, $.self)),
 
     def: $ => choice($.abstract_def, $.method_def),
 
@@ -113,11 +149,11 @@ module.exports = grammar({
       ),
 
     abstract_def: $ =>
-      seq(optional(choice('private', 'protected')), 'abstract', $._base_def),
+      seq(optional(choice($.private, $.protected)), 'abstract', $._base_def),
 
     method_def: $ =>
       seq(
-        optional(choice('private', 'protected')),
+        optional(choice($.private, $.protected)),
         $._base_def,
         optional($._statements),
         'end',
@@ -144,6 +180,10 @@ module.exports = grammar({
         $.identifier,
         $.constant,
         $.comment,
+        $.line_pseudo_constant,
+        $.endline_pseudo_constant,
+        $.file_pseudo_constant,
+        $.dir_pseudo_constant,
       ),
 
     string: $ => choice($.quoted_string, $.percent_string),
@@ -165,6 +205,8 @@ module.exports = grammar({
       ),
 
     regex_literal: $ => seq('/', repeat(/[^\/]|\\\//), '/'),
+
+    require: $ => seq('require', $.quoted_string),
 
     integer: $ =>
       seq(
@@ -361,7 +403,13 @@ module.exports = grammar({
 
     class_variable: $ => seq('@@', $.identifier),
 
-    self: $ => token('self'),
+    self: $ => 'self',
+
+    abstract: $ => 'abstract',
+
+    protected: $ => 'protected',
+
+    private: $ => 'private',
 
     identifier: $ => token(seq(ident_start, repeat(ident_part))),
 
@@ -375,6 +423,14 @@ module.exports = grammar({
       ),
 
     _constant_segment: $ => token(seq(const_start, repeat(ident_part))),
+
+    line_pseudo_constant: $ => '__LINE__',
+
+    endline_pseudo_constant: $ => '__END_LINE__',
+
+    file_pseudo_constant: $ => '__FILE__',
+
+    dir_pseudo_constant: $ => '__DIR__',
 
     comment: $ => seq('#', /.*/),
 
